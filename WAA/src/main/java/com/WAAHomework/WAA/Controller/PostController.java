@@ -3,10 +3,10 @@ package com.WAAHomework.WAA.Controller;
 import com.WAAHomework.WAA.Entity.Post;
 import com.WAAHomework.WAA.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/posts")// class level path
@@ -21,7 +21,7 @@ public class PostController {
         return postService.getAllPosts();
     }
     @GetMapping("/{id}")
-    public Post getPostById(@PathVariable long id){
+    public Optional getPostById(@PathVariable long id){
         return postService.getPostById(id);
     }
     @DeleteMapping("/{id}")

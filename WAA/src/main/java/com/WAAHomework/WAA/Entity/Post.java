@@ -1,17 +1,24 @@
 package com.WAAHomework.WAA.Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String content;
     private String author;
 
-    public Post(long id, String title, String content, String author) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.author = author;
-    }
+
 
     public long getId() {
         return id;
