@@ -25,6 +25,10 @@ public class PostService {
     public void deletePostById(long id){
         postRepo.deleteById(id);
     }
+    public  void updateById(long id, Post post){
+     postRepo.updateById(id,post);
+    }
+
     public void createNewPost(Post post){
         postRepo.save(post);
     }

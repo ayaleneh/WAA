@@ -1,5 +1,4 @@
 package com.WAAHomework.WAA.Repo;
-
 import com.WAAHomework.WAA.Entity.Post;
 import org.springframework.stereotype.Repository;
 
@@ -27,15 +26,14 @@ public class PostRepo {
     public void deleteById(long id){
         posts.removeIf(post -> post.getId()==id);
     }
-//    public Post updateById(Post updatedPost){
-//
-//        for (Post post:posts){
-//            if (post.getId()== updatedPost.getId()){
-//                post.getId()= updatedPost.getId();
-//                post.getTitle()= updatedPost.getTitle();
-//            }
-//        }
-//    }
+    public void updateById(long id, Post updatedPost){
+
+        for (Post post:posts){
+            if (post.getId()== id){
+                post=updatedPost;
+            }
+        }
+    }
     public void save(Post post){
         posts.add(post);
     }

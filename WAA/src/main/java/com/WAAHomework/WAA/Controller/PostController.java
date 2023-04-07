@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/posts")// class level path
 public class PostController {
-    private PostService postService;
+    private final PostService postService;
     @Autowired
     public PostController(PostService postService){
         this.postService=postService;
@@ -29,10 +29,14 @@ public class PostController {
          postService.deletePostById(id);
          return "deleted successfully";
     }
-//    @PostMapping("/{id}")
+
     @PostMapping("/")
-    public ResponseEntity<?> createNewPost(@RequestBody Post post){
+    public void createPost(@RequestBody Post post){
         postService.createNewPost(post);
-        return ResponseEntity.ok().build();
     }
+    @PutMapping("/{id}")
+    public void updateById(@PathVariable long id, @RequestBody Post post){
+        postService.updateById(id,post);
+    }
+
 }
