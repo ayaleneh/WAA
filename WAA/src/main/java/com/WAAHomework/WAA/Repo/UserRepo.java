@@ -1,11 +1,10 @@
 package com.WAAHomework.WAA.Repo;
 
 import com.WAAHomework.WAA.Entity.User;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-@Repository
 public class UserRepo {
     private List<User> users= new ArrayList<>();
 

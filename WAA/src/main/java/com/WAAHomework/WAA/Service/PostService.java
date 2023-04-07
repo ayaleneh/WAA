@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 @Service
 public class PostService {
-    private PostRepo postRepo;
+    private final PostRepo postRepo;
     @Autowired
     public PostService(PostRepo postrepo){
         this.postRepo=postrepo;
