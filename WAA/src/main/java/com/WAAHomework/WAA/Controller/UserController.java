@@ -12,7 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
     @Autowired
     public UserController(UserService userService){
         this.userService=userService;
@@ -22,7 +22,7 @@ public class UserController {
         return userService.getAllUsers();
     }
     @GetMapping("/{id}")
-    public Optional getUserById(@PathVariable long id){
+    public User getUserById(@PathVariable long id){
        return userService.getUserById(id);
     }
     @GetMapping("/{id}/posts")

@@ -21,7 +21,7 @@ public class PostController {
         return postService.getAllPosts();
     }
     @GetMapping("/{id}")
-    public Optional getPostById(@PathVariable long id){
+    public Optional<Post> getPostById(@PathVariable long id){
         return postService.getPostById(id);
     }
     @DeleteMapping("/{id}")
@@ -37,6 +37,10 @@ public class PostController {
     @PutMapping("/{id}")
     public void updateById(@PathVariable long id, @RequestBody Post post){
         postService.updateById(id,post);
+    }
+    @GetMapping("/author")
+    public List<Post> getPostsByAuthor(@RequestParam String author){
+        return postService.getPostsByAuthor(author);
     }
 
 }
