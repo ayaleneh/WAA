@@ -20,9 +20,10 @@ public class Post {
     private String author;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+
     private User user;
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable
     private List<Comment> commentList= new ArrayList<>();
 
     public Long getId() {

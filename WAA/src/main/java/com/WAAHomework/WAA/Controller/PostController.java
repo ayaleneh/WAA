@@ -35,7 +35,7 @@ public class PostController {
         postService.createNewPost(post);
     }
     @PutMapping("/{id}")
-    public void updateById(@PathVariable long id, @RequestBody Post post){
+    public void updateById(@PathVariable("id") long id, @RequestBody Post post){
         postService.updateById(id,post);
     }
     @GetMapping("/author")

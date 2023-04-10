@@ -1,5 +1,6 @@
 package com.WAAHomework.WAA.Service;
 
+import com.WAAHomework.WAA.Aspect.ExecutionTime;
 import com.WAAHomework.WAA.Entity.Post;
 import com.WAAHomework.WAA.Entity.User;
 
@@ -21,6 +22,7 @@ public class UserService {
     public List<User> getAllUsers(){
     return  userRepo.findAll();
     }
+    @ExecutionTime
     public User getUserById(long id){
       return userRepo.findById(id).orElse(null);
     }
