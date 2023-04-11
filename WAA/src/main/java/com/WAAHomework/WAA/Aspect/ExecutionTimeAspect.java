@@ -9,9 +9,9 @@ import java.lang.annotation.Annotation;
 
 @Aspect
 @Component
-public class ExecutionTimeAspect implements ExecutionTime {
+public class ExecutionTimeAspect {
 
-    @Around("@annotation(com.example.annotations.ExecutionTime)")
+    @Around("@annotation(com.WAAHomework.WAA.Aspect.ExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object proceed = joinPoint.proceed();
@@ -23,8 +23,4 @@ public class ExecutionTimeAspect implements ExecutionTime {
         return proceed;
     }
 
-    @Override
-    public Class<? extends Annotation> annotationType() {
-        return null;
-    }
 }
