@@ -19,3 +19,7 @@ spring:
       mode: always
 server:
   port: 7070
+
+jwt:
+  secret: myjwtsecretkey
+  expiration: 3600000
