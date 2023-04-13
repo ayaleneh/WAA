@@ -30,6 +30,7 @@ public class UserController {
         return userService.getPostByUserId(id);
     }
     @PostMapping("/")
+
     public void createUser(@RequestBody User user){
         userService.createUser(user);
     }
