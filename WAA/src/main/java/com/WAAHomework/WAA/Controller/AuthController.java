@@ -1,28 +1,33 @@
 package com.WAAHomework.WAA.Controller;
-
-import com.WAAHomework.WAA.Config.JwtUtils;
-import com.WAAHomework.WAA.Entity.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.WAAHomework.WAA.Entity.dto.request.LoginRequest;
+import com.WAAHomework.WAA.Entity.dto.request.RefreshTokenRequest;
+import com.WAAHomework.WAA.Entity.dto.response.LoginResponse;
+import com.WAAHomework.WAA.Service.AuthService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/v1/authenticate")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthController {
-    private JwtUtils jwtUtils;
-    private BCryptPasswordEncoder passwordEncoder;
 
-    public AuthController(JwtUtils jwtUtils, BCryptPasswordEncoder passwordEncoder){
-        this.jwtUtils =jwtUtils;
-        this.passwordEncoder=passwordEncoder;
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
-    @PostMapping("/login")
-    public String login(@RequestBody User user){
-        // Validate user credentials (replace this with a real authentication service)
-        if (user.getName().equals("testuser") && passwordEncoder.matches(user.getPassword(), "$2a$10$2IevDskxEeSmy7Sy41Xl7.PSxoMoDznoGumq4vr0kOWOI9X0uV7qC")) {
-            return jwtUtils.generateToken(user.getName());
-        } else {
-            throw new RuntimeException("Invalid username or password");
-        }
+
+    @PostMapping
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        var loginResponse = authService.login(loginRequest);
+        return new ResponseEntity<LoginResponse>(
+                loginResponse, HttpStatus.OK);
     }
+
+    @PostMapping("/refreshToken")
+    public LoginResponse refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return authService.refreshToken(refreshTokenRequest);
+    }
+
 }
